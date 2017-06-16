@@ -1,0 +1,61 @@
+{% extends "cashmachine/bootstrap/pages/payout.html" %}
+
+{% block title %}Web-ATM{% endblock %}
+
+{% block panel %}
+ <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-md-offset-5">
+                <div class="login-panel panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><p class=" fa fa-credit-card"></p> Enter Amount</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form action="{% url 'atm_app:payout' %}" method="post"  role="form" xmlns="http://www.w3.org/1999/html">
+                        {% csrf_token %}
+                            <fieldset>
+
+                                <div class="form-group">
+
+                                   {{form.amount}}
+                                </div>
+                                <!-- Change this to a button or input when using this as a form -->
+                                <input type="button" id= "exitButton" value="Exit" class="btn btn-danger" onclick=window.location="{% url 'atm_app:exit' %}"></input>
+                                <input type="button" id= "clearFormButton" value="Clear" class="btn btn-warning" onclick="clearForm()"></input>
+                                <input type="Submit" id= "sendFormButton" value="OK" class="btn btn-success disabled"></input>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="panel-footer">
+                        <form  >
+                            <fieldset >
+                                <div  class="col-md-10">
+                                <!-- Change this to a button or input when using this as a form -->
+                                    <input type="button" value="1" class="btn btn-outline btn-primary" onclick="fillForm(this)" ></input>
+                                    <input type="button" value="2" class="btn btn-outline btn-primary" onclick="fillForm(this)"></input>
+                                    <input type="button" value="3" class="btn btn-outline btn-primary" onclick="fillForm(this)" ></input>
+                                </div>
+                                <div class="col-md-10">
+                                    <input type="button" value="4" class="btn btn-outline btn-primary" onclick="fillForm(this)" ></input>
+                                    <input type="button" value="5" class="btn btn-outline btn-primary" onclick="fillForm(this)" ></input>
+                                    <input type="button" value="6" class="btn btn-outline btn-primary" onclick="fillForm(this)" ></input>
+                                </div>
+                                <div class="col-md-10">
+                                    <input type="button" value="7" class="btn btn-outline btn-primary" onclick="fillForm(this)" ></input>
+                                    <input type="button" value="8" class="btn btn-outline btn-primary" onclick="fillForm(this)" ></input>
+                                    <input type="button" value="9" class="btn btn-outline btn-primary" onclick="fillForm(this)" ></input>
+                                </div>
+                                <div class="col-md-10">
+                                    <input type="button" value="0" class="btn btn-outline btn-primary" onclick="fillForm(this)" ></input>
+                                    <input style="padding-left:14px; padding-right:14px;"  id='dotButton' type="button" value="." class="btn btn-outline btn-primary" onclick="fillForm(this)" ></input>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

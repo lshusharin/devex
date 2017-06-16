@@ -1,0 +1,29 @@
+{% extends "cashmachine/bootstrap/pages/login.html" %}
+
+{% block title %}Web-ATM{% endblock %}
+
+{% block panel %}
+ <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-md-offset-5">
+                <div class="login-panel panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><p class=" fa fa-credit-card"></p> Select the Operation</h3>
+                    </div>
+                    <div class="panel-body">
+
+                        <!-- Change this to a button or input when using this as a form -->
+                        <input type="button" id= "exitButton" value="Exit" class="btn btn-danger" onclick=window.location="{% url 'atm_app:exit' %}"></input>
+                        {%for key, val in operations.items%}
+
+                        <input type="button" id= "getBalanceButton" value={{val.0}} class="btn btn-success" onclick=window.location={{val.1}}></input>
+                        {%endfor%}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

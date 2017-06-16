@@ -1,0 +1,29 @@
+{% extends "cashmachine/bootstrap/pages/error.html" %}
+
+{% block title %}Web-ATM{% endblock %}
+
+{% block panel %}
+ <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-md-offset-5">
+                <div class="panel panel-red">
+                    {%for key, value in result.items %}
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><p class=" fa fa-credit-card"></p> {{key}}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>{{value}}</p>
+
+                        <!-- Change this to a button or input when using this as a form -->
+                        <input type="button" id= "backButton" value="Back" class="btn btn-warning " onclick="window.location.href = window.history.back(1);"></input>
+
+
+                    </div>
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

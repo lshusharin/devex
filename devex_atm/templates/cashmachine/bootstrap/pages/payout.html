@@ -1,0 +1,98 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'bootstrap/bower_components/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="{% static 'bootstrap/bower_components/metisMenu/dist/metisMenu.min.css' %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'bootstrap/dist/css/sb-admin-2.css' %}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="{% static 'bootstrap/bower_components/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script >
+        window.onload = function() {
+            var input_value = document.getElementById('idpayout').value;
+            if (input_value.trim().length != 0) {
+                document.getElementById('sendFormButton').classList = "btn btn-success" ;
+
+            }
+        };
+        function fillForm(button)
+        {
+            var button_value = button.value;
+            var input_value = document.getElementById('idpayout').value;
+
+            if (input_value.split('.', 2)[1]==null){
+                frac_length = 0 ;
+            }
+            else{
+                frac_length = input_value.split('.', 2)[1].length ;
+            }
+
+            if (frac_length != 2 ){
+
+                if (input_value.trim().length == 0) {
+
+                    if (button_value == '.') {
+                        document.getElementById('dotButton').classList = "btn btn-default disabled";
+                        var end_value = '0' + button_value;
+                    }
+                    else {
+                        var end_value = button_value;
+                    }
+                    document.getElementById('clearFormButton').classList = "btn btn-warning";
+                    document.getElementById('sendFormButton').classList = "btn btn-success";
+                }
+                else {
+                     if (button_value == '.') {
+                        document.getElementById('dotButton').classList = "btn btn-default disabled";
+                     }
+                    var end_value = input_value + button_value
+                    document.getElementById('sendFormButton').classList = "btn btn-success";
+                }
+                document.getElementById('idpayout').value = end_value;
+            }
+        }
+        function clearForm()
+        {
+            document.getElementById('idpayout').value = '';
+            document.getElementById('dotButton').classList = "btn btn-outline btn-primary";
+            document.getElementById('sendFormButton').classList = "btn btn-success disabled" ;
+
+        }
+    </script>
+
+</head>
+
+<body>
+
+    {% block panel %}{% endblock %}
+
+    {%include 'cashmachine/bootstrap/pages/bottom-scripts.html'%}
+
+
+</body>
+
+</html>

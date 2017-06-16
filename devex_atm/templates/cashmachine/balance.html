@@ -1,0 +1,34 @@
+{% extends "cashmachine/bootstrap/pages/passwd.html" %}
+
+{% block title %}Web-ATM{% endblock %}
+
+{% block panel %}
+ <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-md-offset-5">
+                <div class="login-panel panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><p class=" fa fa-credit-card"></p> Your Balance</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            {%for key, value in result.items %}
+                            <div class="form-group">
+                                <label for="disabledSelect">{{key}}</label>
+                                <input class="form-control" value={{value}} id="disabledInput" type="text"  disabled></input>
+                            </div>
+                            {%endfor%}
+                        </div>
+                        <!-- Change this to a button or input when using this as a form -->
+                        <input type="button" id= "exitButton" value="Exit" class="btn btn-danger" onclick=window.location="{% url 'atm_app:exit' %}"></input>
+                        <input type="button" id= "backButton" value="Back" class="btn btn-warning "  onclick=window.location="{% url 'atm_app:operations' %}"></input>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
